@@ -3,6 +3,7 @@ const nodemailer = require('nodemailer');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+require('dotenv').config()
 
 // Middleware to parse JSON bodies
 app.use(express.json());
@@ -14,12 +15,12 @@ app.get('/send-email', (req, res) => {
 
     // Create a transporter object using SMTP
     const transporter = nodemailer.createTransport({
-        host: 'smtp.gmail.com',
+        host: 'smtp-relay.brevo.com',
         port: 587,
         secure: false, // true for 465, false for other ports
         auth: {
             user: 'devcubiconia@gmail.com', // your email address
-            pass: 'phwl hpge pekn kayg' // your password
+            pass: process.env.PASS // your password
         }
     });
 
@@ -28,7 +29,7 @@ app.get('/send-email', (req, res) => {
         from: 'devcubiconia@gmail.com', // sender address
         to: 'fariz313.akbar@gmail.com',
         subject :"sub", // Subject line
-        text : "prod plain text body"
+        text : "Super real prod plain text body"
     };
 
     // Send mail with defined transport object

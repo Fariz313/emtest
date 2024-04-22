@@ -8,6 +8,7 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 
 // POST route to send emails
+app.get('/', (req, res) => {res.send('Server on');})
 app.get('/send-email', (req, res) => {
     const { to, subject, text } = req.body;
 
